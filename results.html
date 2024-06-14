@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Processed Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Results Dashboard</strong></li>
+        </ul>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Review</a></li>
+            <li><a href="#" role="button">Contact Support</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <hgroup>
+                    <h2>Processed Results Overview</h2>
+                    <h3>Transcript and Analysis</h3>
+                </hgroup>
+                <h3>Transcript</h3>
+                <p>{{ transcript }}</p>
+
+                <h3>Diarization Details</h3>
+                <ul>
+                    {% for detail in diarization %}
+                    <li><strong>Speaker {{ detail.speaker }}:</strong> {{ detail.text }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Analysis Summary</h3>
+                <p><strong>Dominant Language:</strong> {{ summary.dominant_language }}</p>
+                <p><strong>Sentiment:</strong> {{ summary.sentiment }}</p>
+                <div>
+                    <h3>Key Phrases</h3>
+                    <ul>
+                        {% for phrase in summary.key_phrases %}
+                        <li>{{ phrase }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h3>Entities</h3>
+                    <ul>
+                        {% for entity in summary.entities %}
+                        <li>{{ entity.Text }} ({{ entity.Type }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="container">
+        <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+    </footer>
+</body>
+</html>
